@@ -1,0 +1,70 @@
+{
+  "models": {
+    "Auto": {
+      "price": 1
+    },
+    "Ultimate": {
+      "price": 1.6
+    },
+    "Performance": {
+      "price": 1.1
+    },
+    "Efficient": {
+      "price": 0.3
+    },
+    "Lite": {
+      "price": 0
+    },
+    "Qwen3.7-Max": {
+      "price": 0.5
+    },
+    "Qwen3.7-Plus": {
+      "price": 0.1
+    },
+    "DeepSeek-V4-Pro": {
+      "price": 0.5
+    },
+    "DeepSeek-V4-Flash": {
+      "price": 0.1
+    },
+    "GLM-5.2": {
+      "price": 0.6
+    },
+    "Kimi-K2.7-Code": {
+      "price": 0.3
+    },
+    "MiniMax-M3": {
+      "price": 0.2
+    }
+  },
+  "discounts": {
+    "Qwen3.7-Max": {
+      "offPeak": {
+        "factor": 0.1,
+        "utcStart": 14,
+        "utcEnd": 24
+      },
+      "regular": {
+        "factor": 0.25,
+        "utcStart": 0,
+        "utcEnd": 14
+      }
+    },
+    "Qwen3.7-Plus": {
+      "offPeak": {
+        "factor": 0.04,
+        "utcStart": 14,
+        "utcEnd": 24
+      }
+    },
+    "GLM-5.2": {
+      "offPeak": {
+        "factor": 0.5,
+        "utcStart": 14,
+        "utcEnd": 24,
+        "expires": "2026-08-15T00:00:00.000Z"
+      }
+    }
+  },
+  "updatedAt": "2026-07-16T08:15:54.616Z"
+}

@@ -1,0 +1,11 @@
+{
+  "name": "qoder-statusline",
+  "version": "1.0.0",
+  "description": "Qoder CLI custom statusline with model pricing, discount badges, and usage tracking",
+  "main": "statusline.js",
+  "scripts": {
+    "fetch-prices": "node fetch-prices.js --force",
+    "fetch-usage": "node fetch-usage.js --force"
+  },
+  "private": true
+}
