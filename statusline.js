@@ -184,9 +184,10 @@ function refreshUsageIfStale() {
       segments.push({ color: C.warning, text: '⚠ cookie expired' });
     } else {
       const addonPart = usage.addonStr ? ` ${usage.addonStr}` : '';
+      segments.push({ color: C.secondary, text: 'Credits' });
       segments.push({
         color: null,
-        text: `${C.secondary}Credits ${usage.color}${usage.bar} ${usage.remaining}/${usage.total}${addonPart}${C.reset}${C.secondary}${usage.stale}`,
+        text: `${usage.color}${usage.bar} ${usage.remaining}/${usage.total}${addonPart}${C.reset}${usage.stale}`,
       });
     }
   }
