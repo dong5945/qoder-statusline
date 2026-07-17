@@ -186,7 +186,7 @@ function refreshUsageIfStale() {
       const addonPart = usage.addonStr ? ` ${usage.addonStr}` : '';
       segments.push({
         color: C.secondary,
-        text: `Credits ${usage.color}${usage.bar}${C.reset}${C.secondary} ${usage.remaining}/${usage.total}${addonPart}${usage.stale}`,
+        text: `Credits ${usage.bar} ${usage.remaining}/${usage.total}${addonPart}${usage.stale}`,
       });
     }
   }
