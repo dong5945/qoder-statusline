@@ -7,7 +7,7 @@ Qoder CLI 自定义状态栏 —— 实时显示模型定价、折扣徽章、Gi
 ## 效果预览
 
 ```
-Qwen3.7-Max 0.25x -50% Model · ctx ▓▓▓░░░░░░░ 30% · ~/project:main · +12 -3 · ▓▓░░░░░░░░ 104
+Qwen3.7-Max 0.25x -50% Model · ctx ▓▓▓░░░░░░░ 30% · ~/project:main · +12 -3 · Credits ▓▓░░░░░░░░ 104/2000
 ```
 
 | 区段 | 含义 |
@@ -16,7 +16,7 @@ Qwen3.7-Max 0.25x -50% Model · ctx ▓▓▓░░░░░░░ 30% · ~/proj
 | `ctx ▓▓▓░░░░░░░ 30%` | 上下文窗口使用率 |
 | `~/project:main` | 工作目录 + Git 分支 |
 | `+12 -3` | Git diff（绿增/红删） |
-| `▓▓░░░░░░░░ 104` | 信用额度剩余（绿>30%、黄≤30%、红≤10%） |
+| `Credits ▓▓░░░░░░░░ 104/2000` | 信用额度剩余/总额（绿>30%、黄≤30%、红≤10%） |
 | `⚠ cookie expired` | Cookie 过期提示（黄色） |
 
 ---
@@ -29,7 +29,7 @@ qoder-statusline/
 ├── fetch-prices.js     # 从 docs.qoder.com 抓取模型定价和折扣规则
 ├── fetch-usage.js      # 通过 Cookie 调用 Qoder API 获取信用额度
 ├── model-prices.json   # 定价数据（每 6 小时自动刷新）
-├── usage.json          # 用量数据（每 10 分钟自动刷新，已 gitignore）
+├── usage.json          # 用量数据（每 2 分钟自动刷新，已 gitignore）
 ├── package.json
 └── .gitignore
 ```
@@ -81,7 +81,7 @@ echo "qoder_locale=zh; qoder_session_cookie=YOUR_COOKIE_HERE" > ~/.qoder/.auth/c
 |---|---|---|
 | 模型定价 | 6 小时 | `docs.qoder.com` HTML 表格抓取 |
 | 折扣规则 | 6 小时 | `docs.qoder.com/events/offpeakrate` |
-| 信用额度 | 10 分钟 | `qoder.com/api/v1/me/usages/big_model_credits` |
+| 信用额度 | 2 分钟 | `qoder.com/api/v1/me/usages/big_model_credits` |
 
 每次状态栏渲染时，脚本会检查数据文件是否过期，过期则在后台启动刷新进程（不阻塞渲染）。
 
@@ -109,7 +109,7 @@ echo "qoder_locale=zh; qoder_session_cookie=YOUR_COOKIE_HERE" > ~/.qoder/.auth/c
 # 强制刷新定价（忽略 6 小时间隔）
 npm run fetch-prices
 
-# 强制刷新用量（忽略 10 分钟间隔）
+# 强制刷新用量（忽略 2 分钟间隔）
 npm run fetch-usage
 ```
 
@@ -144,7 +144,7 @@ Custom status line for Qoder CLI — real-time model pricing, discount badges, G
 ## Preview
 
 ```
-Qwen3.7-Max 0.25x -50% Model · ctx ▓▓▓░░░░░░░ 30% · ~/project:main · +12 -3 · ▓▓░░░░░░░░ 104
+Qwen3.7-Max 0.25x -50% Model · ctx ▓▓▓░░░░░░░ 30% · ~/project:main · +12 -3 · Credits ▓▓░░░░░░░░ 104/2000
 ```
 
 | Segment | Meaning |
@@ -153,7 +153,7 @@ Qwen3.7-Max 0.25x -50% Model · ctx ▓▓▓░░░░░░░ 30% · ~/proj
 | `ctx ▓▓▓░░░░░░░ 30%` | Context window usage |
 | `~/project:main` | Working directory + Git branch |
 | `+12 -3` | Git diff stats (green additions / red deletions) |
-| `▓▓░░░░░░░░ 104` | Remaining credits (green >30%, yellow ≤30%, red ≤10%) |
+| `Credits ▓▓░░░░░░░░ 104/2000` | Remaining/total credits (green >30%, yellow ≤30%, red ≤10%) |
 | `⚠ cookie expired` | Cookie expired warning (yellow) |
 
 ## File Structure
@@ -164,7 +164,7 @@ qoder-statusline/
 ├── fetch-prices.js     # Scrapes model pricing from docs.qoder.com
 ├── fetch-usage.js      # Fetches credit usage via Qoder API (cookie auth)
 ├── model-prices.json   # Pricing data (auto-refreshes every 6h)
-├── usage.json          # Usage data (auto-refreshes every 10min, gitignored)
+├── usage.json          # Usage data (auto-refreshes every 2min, gitignored)
 ├── package.json
 └── .gitignore
 ```
@@ -211,7 +211,7 @@ Run `/quit` and re-enter to see the status line.
 |---|---|---|
 | Model pricing | 6 hours | `docs.qoder.com` HTML table scraping |
 | Discount rules | 6 hours | `docs.qoder.com/events/offpeakrate` |
-| Credit usage | 10 minutes | `qoder.com/api/v1/me/usages/big_model_credits` |
+| Credit usage | 2 minutes | `qoder.com/api/v1/me/usages/big_model_credits` |
 
 On each render, stale data files trigger background refresh processes (non-blocking).
 
@@ -237,7 +237,7 @@ Matches the current UTC hour against discount windows:
 # Force refresh pricing (ignores 6h interval)
 npm run fetch-prices
 
-# Force refresh usage (ignores 10min interval)
+# Force refresh usage (ignores 2min interval)
 npm run fetch-usage
 ```
 

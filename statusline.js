@@ -126,7 +126,7 @@ function refreshPricesIfStale() {
   }).unref();
 }
 
-const USAGE_STALE_MS = 10 * 60 * 1000; // 10 minutes
+const USAGE_STALE_MS = 2 * 60 * 1000; // 2 minutes
 
 function refreshUsageIfStale() {
   try {
@@ -185,7 +185,7 @@ function refreshUsageIfStale() {
     } else {
       const addonPart = usage.addonStr ? ` ${usage.addonStr}` : '';
       segments.push({
-        color: C.secondary,
+        color: usage.color,
         text: `Credits ${usage.bar} ${usage.remaining}/${usage.total}${addonPart}${usage.stale}`,
       });
     }

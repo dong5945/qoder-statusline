@@ -9,7 +9,7 @@ const os = require('os');
 
 const USAGE_FILE = path.join(__dirname, 'usage.json');
 const COOKIE_FILE = path.join(os.homedir(), '.qoder', '.auth', 'cookie');
-const STALE_MS = 10 * 60 * 1000; // 10 minutes
+const STALE_MS = 2 * 60 * 1000; // 2 minutes
 const API_URL = 'https://qoder.com/api/v1/me/usages/big_model_credits';
 
 function isFresh() {
